@@ -68,4 +68,27 @@ public class CarroDAO {
     	return lista;
     }
      
+    public void alterarCarros (CarrosDTO objcarrodto) {
+    	String sql = "update carros set nome = ?, ano_fabricacao = ?, marca=? where id = ? ";
+    	conexao = new ConexaoDAO().conectaBD();
+    	
+        try {
+            pstt = conexao.prepareStatement(sql);
+            
+            
+            pstt.setString(1, objcarrodto.getNome());
+            pstt.setString(2, objcarrodto.getAno_fabricacao());
+            pstt.setString(3, objcarrodto.getMarca());
+            pstt.setInt(4, objcarrodto.getId());
+            
+            pstt.execute();
+            pstt.close();
+            
+            
+            
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "CarroDAO alterar" + error);
+            
+        }
+    }
 }
