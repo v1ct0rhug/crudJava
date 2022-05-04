@@ -36,6 +36,7 @@ public class FormularioCarroVIEW extends javax.swing.JFrame {
         btnCarregarCampos = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +104,13 @@ public class FormularioCarroVIEW extends javax.swing.JFrame {
             }
         });
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,7 +142,9 @@ public class FormularioCarroVIEW extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(97, 97, 97)
+                                .addGap(10, 10, 10)
+                                .addComponent(btnExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnCarregarCampos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnLimpar)
@@ -169,7 +179,8 @@ public class FormularioCarroVIEW extends javax.swing.JFrame {
                     .addComponent(btnPesquisar)
                     .addComponent(btnCarregarCampos)
                     .addComponent(btnLimpar)
-                    .addComponent(btnAlterar))
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir))
                 .addGap(25, 25, 25))
         );
 
@@ -204,6 +215,12 @@ public class FormularioCarroVIEW extends javax.swing.JFrame {
        LimparCampos();
     }//GEN-LAST:event_btnAlterarActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+     ExcluirCarros();
+     listarCarros();
+     LimparCampos();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -217,6 +234,7 @@ public class FormularioCarroVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCarregarCampos;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel1;
@@ -314,5 +332,18 @@ public class FormularioCarroVIEW extends javax.swing.JFrame {
     			objcarrodao.alterarCarros(objCarrosDTO);
     	
     	
+    }
+    
+    private void ExcluirCarros (){
+        int id;
+        
+        id = Integer.parseInt(txtId.getText());
+        
+        CarrosDTO objCarrosDTO = new CarrosDTO();
+        objCarrosDTO.setId(id);
+        
+        CarroDAO objCarroDAO = new CarroDAO();
+         objCarroDAO.excluirCarros(objCarrosDTO);
+    
     }
 }

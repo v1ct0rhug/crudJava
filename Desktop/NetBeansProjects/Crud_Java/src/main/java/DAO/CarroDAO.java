@@ -91,4 +91,26 @@ public class CarroDAO {
             
         }
     }
+    
+    public void excluirCarros (CarrosDTO objcarrodto) {
+    	String sql= "delete from carros where id = ? ";
+    	conexao = new ConexaoDAO().conectaBD();
+    	
+        try {
+            pstt = conexao.prepareStatement(sql);
+            
+
+            pstt.setInt(1, objcarrodto.getId());
+            
+            pstt.execute();
+            pstt.close();
+            
+            
+            
+        } catch (Exception error) {
+            JOptionPane.showMessageDialog(null, "CarroDAO excluir" + error);
+            
+        }
+    	
+    }
 }
