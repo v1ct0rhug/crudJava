@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../CSS/comprar.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de comentário</title>
+</head>
+
+<body>
+
+    <div id="paralelograma"></div>>
+
+    <section>
+        <form action="#" method="POST">
+            <h1 id="texto1">Adicione o carro</h1>
+            <fieldset>
+                <div class="container">
+                    <label>Nome do carro</label>
+                    <br>   
+                    <input class="nomecarro" type="text" required name="usuario" autofocus placeholder="Ex: Corolla">                           
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="container">
+                    <label>Ano de Fabricação</label>
+                    <br>   
+                    <input class="fabricacao" type="text" required name="anofabricacao" placeholder="Ex: 2013">                           
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div class="container">
+                    <label>Marca</label>
+                    <br>  
+                    <input class="marca" type="text" required name="marca" placeholder="Ex: Toyota" >
+                    <button type="submit"> Enviar </button>
+                                     
+                </div>
+            </fieldset>
+        </form>
+
+        <img src="../imagens/atenas_car.png">
+    </section>
+    
+    <script href="javascript/main.js">
+  const formulario = document.querySelector('body > section > form');
+
+const nomeCarro= document.querySelector('body > section > form > fieldset:nth-child(2) > div > input');
+const anoFabricacao = document.querySelector('body > section > form > fieldset:nth-child(3) > div > input');
+const marca = document.querySelector('body > section > form > fieldset:nth-child(4) > div > input');
+
+
+        function cadastrar () {
+
+            fetch("http://localhost:8080/carro",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({
+        nome:nomeCarro.value,
+        ano_fabricacao:anoFabricacao.value,
+        marca:marca.value
+    })
+
+            })
+            .then (function (res) {console.log(res) })
+            .catch(function (res) {console.log (res) })
+        }
+
+
+
+
+formulario.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const dados = {
+        nome:nomeCarro.value,
+        ano_fabricacao:anoFabricacao.value,
+        marca:marca.value
+    };
+
+    console.log(dados)
+
+});
+
+        </script>
+    
+</body>
+</html>
