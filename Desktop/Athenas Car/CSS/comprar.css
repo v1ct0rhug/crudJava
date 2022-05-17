@@ -252,3 +252,7 @@ section img {
         margin-left: 0;
     }
 }
+
+.btn-alterar {
+    text-decoration: none;
+}
